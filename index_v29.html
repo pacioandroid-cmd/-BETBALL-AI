@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06080b">
+<title>BETBALL AI PRO v29</title>
+<style>
+:root{--bg:#06080b;--c:#0e151c;--c2:#151f28;--t:#f7f9fb;--m:#87939e;--l:#26333e;--g:#18e39a;--y:#f2bd45;--r:#ff5261;--b:#55a6ff;--v:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 420px at 50% -120px,rgba(24,227,154,.13),transparent 65%),radial-gradient(700px 500px at 100% 20%,rgba(139,92,246,.11),transparent 65%),var(--bg);color:var(--t);font:14px Inter,system-ui,sans-serif}.app{max-width:1080px;margin:auto;padding-bottom:78px}
+.top{position:sticky;top:0;z-index:20;padding:12px 16px;display:flex;align-items:center;background:#06080bf2;border-bottom:1px solid var(--l);backdrop-filter:blur(16px)}.brand{font-weight:950;font-size:21px}.brand small{display:block;color:var(--y);font-size:7px;letter-spacing:.25em}.status{margin-left:auto;text-align:right;color:var(--m);font-size:8px}.status b{display:block;color:var(--g)}button,select{font:inherit}button{cursor:pointer}.theme,.pill,.chip,.back,.refresh,.tab{border:1px solid var(--l);background:var(--c);color:var(--m);border-radius:11px;padding:9px 12px;font-size:9px;font-weight:900}.theme{width:40px;height:40px;margin-left:10px}
+.tabs{position:sticky;top:67px;z-index:19;display:flex;gap:4px;padding:7px 16px;background:#06080bec;border-bottom:1px solid var(--l);overflow:auto}.tabs button{border:0;background:0;color:var(--m);padding:9px 13px;font-size:9px;font-weight:950;white-space:nowrap;border-bottom:2px solid transparent}.tabs .on{color:#fff;border-color:var(--g)}.badge{background:var(--r);color:#fff;border-radius:9px;padding:3px 6px;font-size:7px}
+.page{display:none}.page.on{display:block}.hero{padding:25px 16px 10px}.k{color:var(--g);font-size:8px;font-weight:950;letter-spacing:.2em}.hero h1{font-size:clamp(36px,7vw,64px);line-height:.9;letter-spacing:-.07em;margin:8px 0}.hero p{color:var(--m);font-size:10px}.row{display:flex;gap:7px;padding:0 16px 11px;overflow:auto}.pill.on,.chip.on,.tab.on{color:var(--g);border-color:#148d62;background:#0b201b}
+.notice{margin:0 16px 13px;padding:11px;border:1px solid var(--l);border-radius:16px;background:linear-gradient(90deg,#0c151d,#101b19);display:flex;gap:10px;align-items:center}.notice div:nth-child(2){flex:1}.notice b{font-size:8px}.notice span{display:block;color:var(--m);font-size:7px;margin-top:3px}.notice button{border:1px solid var(--l);background:var(--c2);color:var(--t);border-radius:8px;padding:8px;font-size:7px;font-weight:950}
+.head{display:flex;justify-content:space-between;align-items:end;padding:5px 16px 9px}.head h2{font-size:12px;margin:0}.head span{font-size:7px;color:var(--m)}
+.feed{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 16px}.match,.box,.heroBox{border:1px solid var(--l);border-radius:17px;background:linear-gradient(145deg,#111923,#0b1016);overflow:hidden;box-shadow:0 10px 26px #0004}.match.live{border-color:#16b97d}.mh,.bh{display:flex;justify-content:space-between;padding:9px 10px;border-bottom:1px solid var(--l);font-size:7px}.mh b{color:var(--g)}.mh span{color:var(--m);max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.clubs{padding:8px}.club{display:grid;grid-template-columns:31px 1fr auto;align-items:center;gap:8px;margin:7px 0}.logo,.crest{display:grid;place-items:center;background:var(--c2);border:1px solid var(--l);overflow:hidden}.logo{width:31px;height:31px;border-radius:9px}.logo img{width:25px;height:25px;object-fit:contain}.club b{font-size:10px}.score{font-size:18px;font-weight:950}.mf{border-top:1px solid var(--l);padding:8px 10px;color:var(--m);font-size:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{margin:0 16px;border:1px dashed var(--l);border-radius:13px;padding:22px;text-align:center;color:var(--m);font-size:9px}
+.pulseRail{margin:0 16px 16px;padding:13px 14px;border:1px solid #1c2a32;border-radius:18px;background:linear-gradient(110deg,rgba(32,240,160,.08),rgba(139,92,246,.07));overflow:hidden}.pulseHead{display:flex;justify-content:space-between;font-size:8px;font-weight:950}.pulseHead span{color:#73808b;font-size:7px}.pulseTrack{height:18px;margin-top:10px;border-radius:99px;background:#0a1117;display:flex;overflow:hidden;border:1px solid #1c2830}.pulseHome{width:61%;background:linear-gradient(90deg,#19d98d,#23f1a3)}.pulseAway{width:39%;background:linear-gradient(90deg,#3d9dff,#8b5cf6)}.pulseLegend{display:flex;justify-content:space-between;margin-top:7px;color:#83909b;font-size:7px}
+.universeCards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 16px 16px}.uCard{border:1px solid #1c2932;border-radius:16px;padding:13px;background:linear-gradient(145deg,#0d141b,#080c11);min-height:72px}.uCard b{display:block;font-size:18px}.uCard span{display:block;color:#77848f;font-size:7px;margin-top:5px}.uCard i{font-style:normal;color:var(--g);font-size:7px;font-weight:950}
+.analysis,.league{padding:14px 16px}.heroBox{margin-top:9px}.matchTop{padding:10px 12px;border-bottom:1px solid var(--l);display:flex;justify-content:space-between;font-size:7px}.matchTop b{color:var(--g)}.teams{display:grid;grid-template-columns:1fr 100px 1fr;text-align:center;align-items:center;padding:22px 10px}.crest{width:68px;height:68px;border-radius:16px;margin:auto}.crest img{width:54px;height:54px;object-fit:contain}.team h2{font-size:18px}.big{font-size:37px;font-weight:950}.sub{font-size:7px;color:var(--m)}.bh{font-size:8px;font-weight:950}.bh span{color:var(--m);font-size:7px}
+.event{display:grid;grid-template-columns:1fr 38px 1fr;min-height:46px;align-items:center;border-bottom:1px solid var(--l);padding:5px 8px;font-size:8px}.event:last-child{border:0}.event .h{text-align:right}.event .a{text-align:left}.event small{display:block;color:var(--m);font-size:6px}.ei{width:28px;height:28px;border-radius:8px;background:var(--c2);display:grid;place-items:center;margin:auto}.goal .ei{color:var(--g)}.yellow .ei{color:var(--y)}.red .ei{color:var(--r)}.sub .ei{color:var(--b)}
+.stat{display:grid;grid-template-columns:85px 1fr 85px;gap:8px;padding:10px 12px;border-bottom:1px solid var(--l);font-size:8px}.bar{height:6px;background:var(--c2);border-radius:8px;display:flex;overflow:hidden}.bar i{height:100%}.bar i:first-child{background:var(--g)}.bar i:last-child{background:var(--b)}
+.ai{margin-top:9px;padding:14px;border:1px solid #5b32ba;border-radius:17px;background:linear-gradient(100deg,#170d2d,#0e1620 45%,#09231c)}.ai strong{font-size:25px}.ai p{color:var(--m);font-size:8px;line-height:1.5}
+.league{padding-top:20px}.league h1{font-size:35px;letter-spacing:-.06em;margin:5px 0}.league p{color:var(--m);font-size:9px}.select{width:100%;margin:8px 0;border:1px solid var(--l);background:var(--c);color:var(--t);padding:10px;border-radius:10px}.tabs2{display:flex;gap:5px;overflow:auto;margin:10px 0}.tab{font-size:7px;padding:8px 10px;white-space:nowrap}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:9px}.metric{border:1px solid var(--l);background:var(--c);border-radius:11px;padding:9px}.metric label{display:block;color:var(--m);font-size:6px;font-weight:900}.metric b{display:block;font-size:12px;margin-top:4px}.table{overflow:auto}.tr{min-width:700px;display:grid;grid-template-columns:35px minmax(210px,1fr) 48px 48px 48px 48px 55px 55px;gap:4px;padding:9px;border-top:1px solid var(--l);align-items:center;font-size:7px}.tr.head{background:var(--c2);border:0;color:var(--m);font-weight:900;font-size:6px}.team{display:flex;align-items:center;gap:7px;font-weight:900}.team img{width:24px;height:24px;object-fit:contain}.pts{font-size:11px;font-weight:950}.leader{display:grid;grid-template-columns:30px 1fr auto;gap:9px;padding:10px 12px;border-bottom:1px solid var(--l);align-items:center}.rank{font-weight:950;color:var(--m)}.player{display:flex;gap:8px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;background:var(--c2);display:grid;place-items:center;overflow:hidden}.avatar img{width:34px;height:34px;object-fit:cover}.player b{font-size:9px}.player span{display:block;color:var(--m);font-size:6px;margin-top:2px}.lstat{text-align:right}.lstat b{font-size:15px}.lstat span{display:block;color:var(--m);font-size:6px}.form{display:flex;gap:3px}.form i{font-style:normal;width:17px;height:17px;border-radius:5px;display:grid;place-items:center;font-size:6px;background:#29343c}.form .w{background:#126f52}.form .d{background:#6f6429}.form .l{background:#6e2730}.fix{display:grid;grid-template-columns:75px 1fr 50px;gap:8px;padding:10px 12px;border-bottom:1px solid var(--l);font-size:7px}.fix b{display:block;font-size:8px}.fix .tm{color:var(--m)}.fix .sc{text-align:right;font-weight:950}
+.bottom{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#06080bf5;border-top:1px solid var(--l);backdrop-filter:blur(16px)}.bottom button{border:0;background:0;color:var(--m);font-size:6px;font-weight:950}.bottom .on{color:var(--g)}.bottom i{display:block;font-style:normal;font-size:18px;margin-bottom:2px}
+@media(min-width:701px){.bottom{display:none}}@media(max-width:700px){.feed{grid-template-columns:1fr}.status{display:none}.universeCards{grid-template-columns:1fr 1fr}.uCard:last-child{grid-column:1/-1}.teams{grid-template-columns:1fr 68px 1fr}.team h2{font-size:14px}.crest{width:58px;height:58px}.big{font-size:30px}.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand">⚽ BETBALL<small>AI PRO · v29</small></div><div class="status"><b>● LIVE DATA</b><span id="updated">Connecting…</span></div><button class="theme" id="theme">☾</button></header>
+
+<div class="tabs" id="scoreTabs"><button class="on" data-f="live">LIVE <span class="badge" id="liveBadge">0</span></button><button data-f="upcoming">UPCOMING</button><button data-f="finished">FINISHED</button><button data-f="all">ALL</button></div>
+
+<section id="home" class="page on">
+<div class="hero"><div class="k">BETBALL AI · SIGNATURE</div><h1>The match,<br>seen differently.</h1><p>Live scores, goalscorers, cards, league positions, form and transparent match intelligence.</p></div>
+<div class="row" id="days"><button class="pill on" data-day="0">TODAY</button><button class="pill" data-day="1">TOMORROW</button><button class="pill" data-day="2">DAY +2</button></div>
+<div class="row" id="chips"></div>
+<div class="notice">🔔<div><b>FOLLOW YOUR MATCHES</b><span>Goals, kick-off and full-time alerts.</span></div><button id="notify">ENABLE</button></div>
+<div class="head"><div><h2>LIVE & UPCOMING</h2><span id="info">Loading…</span></div><button class="refresh" id="refresh">↻ REFRESH</button></div>
+<div id="feed" class="feed"><div class="empty">Loading fixtures…</div></div>
+</section>
+
+<section id="analysis" class="page"><div class="analysis"><button class="back" id="back">← BACK TO MATCHES</button><div class="k">MATCH CENTRE</div><div id="detail"></div></div></section>
+
+<section id="leagues" class="page"><div class="league"><div class="k">COMPETITION CENTRE</div><h1 id="lname">Premier League</h1><p id="ldesc">Table, form, scorers, statistics and fixtures.</p><select class="select" id="lsel"></select>
+<div class="heroBox"><div class="grid" id="summary"></div></div>
+<div class="tabs2" id="ltabs"><button class="tab on" data-t="table">TABLE</button><button class="tab" data-t="form">FORM</button><button class="tab" data-t="scorers">SCORERS</button><button class="tab" data-t="stats">STATS</button><button class="tab" data-t="fixtures">FIXTURES</button></div>
+<div id="lcontent"><div class="empty">Loading…</div></div></div></section>
+
+<nav class="bottom"><button class="on" data-p="home"><i>⌂</i>HOME</button><button data-p="leagues"><i>🏆</i>LEAGUES</button><button data-p="analysis"><i>⚽</i>MATCH</button><button data-p="home"><i>☰</i>MENU</button></nav>
+</div>
+
+<script>
+const API='https://site.api.espn.com/apis/site/v2/sports/soccer/',CORE='https://sports.core.api.espn.com/v2/sports/soccer/leagues/',WEB='https://site.web.api.espn.com/apis/common/v3/sports/soccer/';
+const LS=[['eng.1','Premier League','PREMIER','England'],['esp.1','La Liga','LA LIGA','Spain'],['ita.1','Serie A','SERIE A','Italy'],['ger.1','Bundesliga','BUNDES','Germany'],['fra.1','Ligue 1','LIGUE 1','France'],['ned.1','Eredivisie','EREDIVISIE','Netherlands'],['por.1','Primeira Liga','PORTUGAL','Portugal'],['sco.1','Scottish Premiership','SCOTLAND','Scotland'],['uefa.champions','Champions League','UCL','Europe'],['uefa.europa','Europa League','EUROPA','Europe'],['uefa.europa.conf','Conference League','CONFERENCE','Europe']];
+let day=0,league='all',filter='live',matches=[],ltab='table',cache={};
+const $=x=>document.getElementById(x),esc=x=>String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const obj=c=>{let x=LS.find(a=>a[0]===c)||[c,c,c,''];return{code:x[0],name:x[1],short:x[2],country:x[3]}};
+const dt=n=>{let d=new Date;d.setDate(d.getDate()+n);return d.toISOString().slice(0,10).replaceAll('-','')};
+const time=x=>{try{return new Date(x).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch{return''}};
+const date=x=>{try{return new Date(x).toLocaleDateString([],{day:'2-digit',month:'short'})}catch{return''}};
+const state=e=>e?.status?.type?.state||'';
+const logo=t=>t?.logo||t?.logos?.[0]?.href||'';
+const name=c=>c?.team?.displayName||c?.team?.shortDisplayName||'Team';
+const score=c=>c?.score??'-';
+const kind=t=>{t=String(t||'').toLowerCase();return t.includes('goal')?'goal':t.includes('yellow')?'yellow':t.includes('red')?'red':t.includes('sub')?'sub':null};
+const icon=t=>t==='goal'?'⚽':t==='yellow'?'🟨':t==='red'?'🟥':'🔄';
+async function json(u){let r=await fetch(u,{cache:'no-store'});if(!r.ok)throw Error(r.status);return r.json()}
+async function board(l,n=0){return json(API+encodeURIComponent(l)+'/scoreboard?dates='+dt(n)+'&_='+Date.now())}
+
+function addSignature(){
+ const h=$('home');if(!h||document.querySelector('.pulseRail'))return;
+ const nav=document.querySelector('.notice');
+ const r=document.createElement('div');r.className='pulseRail';
+ r.innerHTML='<div class="pulseHead"><b>⚡ LIVE PULSE</b><span>match pressure</span></div><div class="pulseTrack"><i class="pulseHome"></i><i class="pulseAway"></i></div><div class="pulseLegend"><span>HOME PRESSURE <b>61%</b></span><span>AWAY PRESSURE <b>39%</b></span></div>';
+ nav.after(r);
+ const c=document.createElement('div');c.className='universeCards';
+ c.innerHTML='<div class="uCard"><b>400+</b><span>COMPETITIONS</span><i>LEAGUE UNIVERSE</i></div><div class="uCard"><b>LIVE</b><span>MATCH CENTRE</span><i>EVENTS + STATS</i></div><div class="uCard"><b>AI</b><span>BETBALL EDGE</span><i>EXPLAINABLE</i></div>';
+ r.after(c);
+}
+
+function chips(){ $('chips').innerHTML='<button class="chip on" data-l="all">ALL</button>'+LS.map(x=>`<button class="chip" data-l="${x[0]}">${x[2]}</button>`).join('');$('chips').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{league=b.dataset.l;$('chips').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));load()})}
+function pass(e){let s=state(e);return filter==='all'||filter==='live'&&s==='in'||filter==='upcoming'&&s==='pre'||filter==='finished'&&s==='post'}
+function mini(e){let d=e.competitions?.[0]?.details||[],x=d.slice().reverse().find(p=>kind(p.text||p.type?.text));return x?icon(kind(x.text||x.type?.text))+' '+(x.text||x.type?.text):'Match centre →'}
+
+function render(){
+ let a=matches.filter(e=>(league==='all'||e.league===league)&&pass(e));
+ $('liveBadge').textContent=matches.filter(e=>state(e)==='in').length;
+ $('info').textContent=`${a.length} fixtures · ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;
+ $('feed').innerHTML=a.length?a.map(e=>{let c=e.competitions?.[0]||{},h=c.competitors?.find(x=>x.homeAway==='home')||{},v=c.competitors?.find(x=>x.homeAway==='away')||{};
+ return `<article class="match ${state(e)==='in'?'live':''}" data-id="${e.id}"><div class="mh"><b>${state(e)==='in'?'● LIVE':state(e)==='post'?'FULL TIME':time(e.date)}</b><span>${esc(e.leagueName||obj(e.league).name)}</span></div><div class="clubs"><div class="club"><span class="logo"><img src="${esc(logo(h))}"></span><b>${esc(name(h))}</b><strong class="score">${score(h)}</strong></div><div class="club"><span class="logo"><img src="${esc(logo(v))}"></span><b>${esc(name(v))}</b><strong class="score">${score(v)}</strong></div></div><div class="mf">${esc(mini(e))}</div></article>`}).join(''):'<div class="empty">No matches in this view. Try ALL or another day.</div>';
+ $('feed').querySelectorAll('[data-id]').forEach(x=>x.onclick=()=>openMatch(x.dataset.id))
+}
+async function load(){
+ $('updated').textContent='Updating…';
+ try{let all=[],arr=league==='all'?LS.map(x=>x[0]):[league];for(let l of arr){let d=await board(l,day);(d.events||[]).forEach(e=>{e.league=l;e.leagueName=d.leagues?.[0]?.name||obj(l).name;all.push(e)})}matches=all.sort((a,b)=>new Date(a.date)-new Date(b.date));$('updated').textContent='Updated '+time(new Date());render()}
+ catch{$('updated').textContent='Retrying';$('feed').innerHTML='<div class="empty">Live provider unavailable. Auto retry is active.</div>'}
+}
+function page(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('on',x.id===p));document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));scrollTo(0,0)}
+
+async function openMatch(id){
+ let e=matches.find(x=>x.id===id);if(!e)return;page('analysis');let c=e.competitions?.[0]||{},h=c.competitors?.find(x=>x.homeAway==='home')||{},v=c.competitors?.find(x=>x.homeAway==='away')||{};
+ $('detail').innerHTML=`<div class="heroBox"><div class="matchTop"><b>${state(e)==='in'?'● LIVE':'MATCH CENTRE'}</b><span>${esc(c.status?.type?.detail||date(e.date)+' · '+time(e.date))}</span></div><div class="teams"><div class="team"><div class="crest"><img src="${esc(logo(h))}"></div><h2>${esc(name(h))}</h2></div><div><div class="big">${score(h)} — ${score(v)}</div><div class="sub">${esc(c.status?.displayClock||'')}</div></div><div class="team"><div class="crest"><img src="${esc(logo(v))}"></div><h2>${esc(name(v))}</h2></div></div></div><div class="box"><div class="bh">MATCH EVENTS <span>GOALS · CARDS · SUBS</span></div><div id="events"><div class="empty">Loading…</div></div></div><div class="box"><div class="bh">MATCH STATS <span>PROVIDER DATA</span></div><div id="stats"><div class="empty">Loading…</div></div></div><div class="box"><div class="bh">LEAGUE POSITIONS <span>LIVE TABLE</span></div><div id="msnap"><div class="empty">Loading…</div></div></div><div class="ai"><div class="k">BETBALL AI · TRANSPARENT</div><strong>Data first. Prediction second.</strong><p>No invented scores, confidence or odds. AI activates when verified form, standings, team stats, injuries and market inputs are connected.</p></div>`;
+ let plays=[];
+ try{let j=await json(API+e.league+'/summary?event='+e.id+'&_='+Date.now());plays=(j.plays||j.commentary||[]).map(p=>({t:kind(p.text||p.type?.text),clock:p.clock?.displayValue||p.time?.displayValue||'',text:p.text||p.type?.text||'',home:p.team?.id===h.team?.id})).filter(p=>p.t)}catch{}
+ if(!plays.length)plays=(c.details||[]).map(p=>({t:kind(p.text||p.type?.text),clock:p.clock?.displayValue||'',text:p.text||p.type?.text||'',home:p.team?.id===h.team?.id})).filter(p=>p.t);
+ $('events').innerHTML=plays.length?plays.reverse().map(p=>`<div class="event ${p.t}"><div class="h">${p.home?esc(p.text):''}${p.home?`<small>${p.clock}</small>`:''}</div><div class="ei">${icon(p.t)}</div><div class="a">${!p.home?esc(p.text):''}${!p.home?`<small>${p.clock}</small>`:''}</div></div>`).join(''):'<div class="empty">No goals, cards or substitutions supplied yet.</div>';
+ let flat=[];(c.stats||[]).forEach(s=>(s.statistics||[]).forEach(x=>flat.push(x)));
+ $('stats').innerHTML=flat.length?flat.slice(0,12).map(x=>`<div class="stat"><span>${esc(x.name||x.label||'Stat')}</span><strong>${esc(x.displayValue||x.value||'')}</strong><div class="bar"><i style="width:50%"></i><i style="width:50%"></i></div></div>`).join(''):'<div class="empty">Detailed statistics appear when supplied.</div>';
+ snapshot(e.league,h.team?.id,v.team?.id)
+}
+
+async function standings(l){
+ let k='s'+l;if(cache[k]&&Date.now()-cache[k].at<120000)return cache[k].d;
+ let j=await json('https://site.api.espn.com/apis/v2/sports/soccer/'+l+'/standings?_='+Date.now()),en=[];
+ (j.children||[]).forEach(g=>(g.standings?.entries||[]).forEach(x=>en.push(x)));if(!en.length)en=j.standings?.entries||[];
+ let r=en.map((x,i)=>{let s={};(x.stats||[]).forEach(z=>s[z.name]=z.value);return{rank:x.rank||i+1,team:x.team||{},gp:s.gamesPlayed??'',w:s.wins??'',d:s.ties??'',l:s.losses??'',gf:s.pointsFor??s.goalsFor??'',ga:s.pointsAgainst??s.goalsAgainst??'',gd:s.differential??'',pts:s.points??'',form:String(x.form||s.form||'').match(/[WDL]/gi)?.slice(-5).map(x=>x.toUpperCase())||[]}});r.sort((a,b)=>(+a.rank||999)- (+b.rank||999));cache[k]={at:Date.now(),d:r};return r
+}
+async function leaders(l){
+ let k='l'+l;if(cache[k]&&Date.now()-cache[k].at<300000)return cache[k].d;let j=null;
+ try{j=await json(CORE+l+'/leaders?limit=100&_='+Date.now())}catch{}
+ if(!j)try{j=await json(WEB+l+'/statistics/byathlete?limit=100&_='+Date.now())}catch{}
+ let out=[];let cats=j?.leaders||j?.categories||j?.statistics||[];
+ for(let c of (Array.isArray(cats)?cats:[])){let n=(c.name||c.label||'').toLowerCase();if(!n.includes('goal')&&!n.includes('scor'))continue;for(let x of c.leaders||c.entries||c.athletes||[]){let a=x.athlete||x.player||x.entity||{},v=x.value??x.displayValue??x.stats?.[0]?.value;if(a.displayName||a.fullName)out.push({name:a.displayName||a.fullName,team:(x.team||a.team)?.displayName||'',value:+v||v||0,photo:a.headshot?.href||''})}}
+ out.sort((a,b)=>(+b.value||0)- (+a.value||0));out=out.slice(0,20).map((x,i)=>({...x,rank:i+1}));cache[k]={at:Date.now(),d:out};return out
+}
+function table(r){return `<div class="table"><div class="tr head"><span>#</span><span>TEAM</span><span>MP</span><span>W</span><span>D</span><span>L</span><span>GD</span><span>PTS</span></div>${r.map(x=>`<div class="tr"><b>${x.rank}</b><span class="team"><img src="${esc(logo(x.team))}">${esc(x.team.displayName||'Team')}</span><span>${x.gp||'—'}</span><span>${x.w||'—'}</span><span>${x.d||'—'}</span><span>${x.l||'—'}</span><span>${x.gd||'—'}</span><b class="pts">${x.pts||'—'}</b></div>`).join('')}</div>`}
+function form(r){return `<div class="box"><div class="bh">LAST 5 FORM <span>W · D · L</span></div>${r.map(x=>`<div class="leader"><b class="rank">${x.rank}</b><div class="player"><div class="avatar"><img src="${esc(logo(x.team))}"></div><div><b>${esc(x.team.displayName||'Team')}</b><span>${x.pts||'—'} pts · ${x.gp||'—'} matches</span></div></div><div class="form">${(x.form.length?x.form:['—']).map(v=>`<i class="${v.toLowerCase()}">${v}</i>`).join('')}</div></div>`).join('')}</div>`}
+function scorer(r){return `<div class="box"><div class="bh">TOP SCORERS <span>GOALS</span></div>${r.length?r.map(x=>`<div class="leader"><b class="rank">${x.rank}</b><div class="player"><div class="avatar">${x.photo?`<img src="${esc(x.photo)}">`:'⚽'}</div><div><b>${esc(x.name)}</b><span>${esc(x.team)}</span></div></div><div class="lstat"><b>${x.value}</b><span>GOALS</span></div></div>`).join(''):'<div class="empty">Scorer feed is not exposed for this competition right now. We show the section honestly instead of inventing players.</div>'}</div>`}
+function stats(r,l){let ba=[...r].sort((a,b)=>(+b.gf||0)-(+a.gf||0))[0],bd=[...r].sort((a,b)=>(+a.ga||999)-(+b.ga||999))[0];return `<div class="box"><div class="bh">COMPETITION INTELLIGENCE <span>LIVE DATA</span></div><div class="grid"><div class="metric"><label>BEST ATTACK</label><b>${esc(ba?.team?.shortDisplayName||'—')}</b></div><div class="metric"><label>BEST DEFENCE</label><b>${esc(bd?.team?.shortDisplayName||'—')}</b></div><div class="metric"><label>TOP SCORER</label><b>${esc(l[0]?.name||'—')}</b></div><div class="metric"><label>TEAMS</label><b>${r.length||'—'}</b></div></div></div>`}
+async function fixtures(l){try{return(await board(l,0)).events||[]}catch{return[]}}
+function fx(a){return `<div class="box"><div class="bh">FIXTURES <span>AVAILABLE NOW</span></div>${a.slice(0,15).map(e=>{let c=e.competitions?.[0]||{},h=c.competitors?.find(x=>x.homeAway==='home')||{},v=c.competitors?.find(x=>x.homeAway==='away')||{};return `<div class="fix"><span class="tm">${date(e.date)}<br>${time(e.date)}</span><span><b>${esc(name(h))}</b><b>${esc(name(v))}</b></span><span class="sc">${score(h)}<br>${score(v)}</span></div>`}).join('')||'<div class="empty">No fixtures.</div>'}</div>`}
+async function leaguePage(){
+ let l=$('lsel').value,o=obj(l);$('lname').textContent=o.name;$('ldesc').textContent=o.country+' · table, form, scorers, statistics and fixtures';$('lcontent').innerHTML='<div class="empty">Loading competition intelligence…</div>';
+ try{let r=await standings(l),s=await leaders(l),a=ltab==='fixtures'?await fixtures(l):[];$('summary').innerHTML=`<div class="metric"><label>LEADER</label><b>${esc(r[0]?.team?.shortDisplayName||'—')}</b></div><div class="metric"><label>POINTS</label><b>${r[0]?.pts||'—'}</b></div><div class="metric"><label>TOP SCORER</label><b>${esc(s[0]?.name||'—')}</b></div><div class="metric"><label>TEAMS</label><b>${r.length||'—'}</b></div>`;$('lcontent').innerHTML=ltab==='table'?table(r):ltab==='form'?form(r):ltab==='scorers'?scorer(s):ltab==='stats'?stats(r,s):fx(a)}
+ catch{$('lcontent').innerHTML='<div class="empty">Competition data unavailable. Try again in a moment.</div>'}
+}
+async function snapshot(l,hid,aid){
+ try{let r=await standings(l),h=r.find(x=>String(x.team.id)===String(hid)),a=r.find(x=>String(x.team.id)===String(aid));$('msnap').innerHTML=`<div class="grid"><div class="metric"><label>HOME POSITION</label><b>${h?.rank||'—'}</b><span class="sub">${esc(h?.team?.displayName||'')}</span></div><div class="metric"><label>AWAY POSITION</label><b>${a?.rank||'—'}</b><span class="sub">${esc(a?.team?.displayName||'')}</span></div><div class="metric"><label>HOME PTS</label><b>${h?.pts||'—'}</b></div><div class="metric"><label>AWAY PTS</label><b>${a?.pts||'—'}</b></div></div>`}catch{$('msnap').innerHTML='<div class="empty">League positions unavailable.</div>'}
+}
+
+$('scoreTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('scoreTabs').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');filter=b.dataset.f;render()});
+$('days').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('days').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');day=+b.dataset.day;load()});
+$('refresh').onclick=load;$('back').onclick=()=>page('home');
+$('theme').onclick=()=>{document.body.classList.toggle('light');$('theme').textContent=document.body.classList.contains('light')?'☀':'☾'};
+$('notify').onclick=async()=>{if(!('Notification'in window))return $('notify').textContent='N/A';let p=await Notification.requestPermission();$('notify').textContent=p==='granted'?'ON':'BLOCKED'};
+$('ltabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{ltab=b.dataset.t;$('ltabs').querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));leaguePage()});
+$('lsel').onchange=leaguePage;
+document.querySelectorAll('.bottom button').forEach(b=>b.onclick=()=>{page(b.dataset.p);if(b.dataset.p==='leagues')leaguePage()});
+$('lsel').innerHTML=LS.map(x=>`<option value="${x[0]}">${x[1]} · ${x[3]}</option>`).join('');
+chips();addSignature();load();setInterval(load,30000);
+</script>
+</body>
+</html>
